@@ -108,6 +108,7 @@
     }
     .btn:hover { background: var(--accent-dark); transform: translateY(-1px) scale(1.03); }
     .btn:active { transform: translateY(0) scale(0.99); }
+    .lightbox .btn {color:white;}
 
     .btn-outline {
       background: transparent;
@@ -119,19 +120,25 @@
     .lyrics { margin-top: 14px; font-style: italic; opacity: 0.95; }
 
     /* ====== Gallery ====== */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 10px;
-    }
-    .gallery img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: transform 0.25s ease;
-    }
+.gallery {
+  display: flex;
+  flex-wrap: wrap;           /* Allow images to wrap to the next row */
+  gap: 10px;                 /* Space between images */
+  justify-content: center;   /* Center the row */
+}
+
+.gallery img {
+  max-width: 23%;            /* ~1/4 of the row for 4 images */
+  flex: 1 1 23%;             /* flexible but respects max-width, 1 means it can grow to fit available 
+  space and shrink proportionally, the 23% means it is roughly 1/4 of the container width
+  if flex:23%, it will auto be 0 1 23%, meaning the item will NOT grow even if there's space, but can 
+  shrink if the container is small */
+  height: 280px;             /* fixed height for uniformity */
+  object-fit: cover;         /* keep aspect ratio, crop if needed */
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
     .gallery img:hover { transform: scale(1.03); }
 
     /* Lightbox */
